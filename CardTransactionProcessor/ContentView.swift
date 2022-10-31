@@ -16,7 +16,8 @@ struct ActionButton: ButtonStyle {
         }
         .padding(12)
         .background(backgroundColor.cornerRadius(32))
-        .scaleEffect(configuration.isPressed ? 0.95 : 1)
+        .scaleEffect(configuration.isPressed ? 0.85 : 1)
+        .animation(.easeOut(duration: 0.2), value: configuration.isPressed)
     }
 }
 
