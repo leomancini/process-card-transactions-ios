@@ -15,6 +15,7 @@ class TransactionsAPI {
             print("API password does not exist")
             return
         }
+        
         guard let url = URL(string: "http://localhost/process-card-transactions/admin/viewTransactions?password=" + password) else { return }
         URLSession.shared.dataTask(with: url) { (data, _, _) in
             let transactions = try! JSONDecoder().decode([Transaction].self, from: data!)
