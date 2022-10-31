@@ -15,7 +15,7 @@ struct ActionButton: ButtonStyle {
             Spacer()
         }
         .padding(12)
-        .background(backgroundColor.cornerRadius(8))
+        .background(backgroundColor.cornerRadius(32))
         .scaleEffect(configuration.isPressed ? 0.95 : 1)
     }
 }
@@ -73,7 +73,7 @@ struct ContentView: View {
                                         .buttonStyle(ActionButton(backgroundColor: .red))
                                 }
                             }
-                            .padding(20)
+                            .padding(28)
                         }
                         .frame(
                             maxWidth: .infinity,
@@ -82,13 +82,12 @@ struct ContentView: View {
                         )
                         .background(
                             RoundedRectangle(
-                                cornerRadius: 16,
+                                cornerRadius: 40,
                                 style: .continuous
                             )
                             .fill(Color.white)
                         )
                     }
-                    .padding([.leading, .trailing], 16)
                     .padding(.bottom, 16)
                 }
                 .toolbarColorScheme(.light, for: .navigationBar)
