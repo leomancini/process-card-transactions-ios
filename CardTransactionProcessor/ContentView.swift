@@ -1,26 +1,28 @@
 import SwiftUI
 
-struct RoundedRectangleButtonStyle: ButtonStyle {
-  func makeBody(configuration: Configuration) -> some View {
-    HStack {
-      Spacer()
-        configuration.label
-            .foregroundColor(.white)
-            .font(
-                .body
-                .weight(.semibold)
-            )
-      Spacer()
+struct ActionButton: ButtonStyle {
+    var backgroundColor: Color;
+    
+    func makeBody(configuration: Configuration) -> some View {
+        HStack {
+            Spacer()
+            configuration.label
+                .foregroundColor(.white)
+                .font(
+                    .body
+                        .weight(.semibold)
+                )
+            Spacer()
+        }
+        .padding(12)
+        .background(backgroundColor.cornerRadius(8))
+        .scaleEffect(configuration.isPressed ? 0.95 : 1)
     }
-    .padding(12)
-    .background(Color.blue.cornerRadius(8))
-    .scaleEffect(configuration.isPressed ? 0.95 : 1)
-  }
 }
 
 struct ContentView: View {
     @State var transactions: [Transaction] = []
-
+    
     var body: some View {
         ZStack {
             Color.black
@@ -35,25 +37,40 @@ struct ContentView: View {
                                     .foregroundColor(.black)
                                     .font(
                                         .title3
-                                        .weight(.semibold)
+                                            .weight(.semibold)
                                     )
                                     .frame(
                                         maxWidth: .infinity,
                                         alignment: .leading
                                     )
-                                Text("$" + String(transaction.amount))
+                                Spacer()
+                                Text(String(transaction.datetimeReadable))
                                     .foregroundColor(.gray)
                                     .frame(
                                         maxWidth: .infinity,
                                         alignment: .leading
                                     )
-                                Spacer(minLength: 32)
+                                Spacer(minLength: 16)
+                                Text("$" + String(transaction.amount))
+                                    .foregroundColor(.black)
+                                    .font(
+                                        .body
+                                        .weight(.medium)
+                                    )
+                                    .frame(
+                                        maxWidth: .infinity,
+                                        alignment: .leading
+                                    )
+                                Spacer(minLength: 16)
                                 HStack {
-                                    Button("Add to list") { }
-                                        .buttonStyle(RoundedRectangleButtonStyle())
+                                    Button("Save") { }
+                                        .buttonStyle(ActionButton(backgroundColor: .blue))
                                     Spacer(minLength: 16)
-                                    Button("Split cost") { }
-                                        .buttonStyle(RoundedRectangleButtonStyle())
+                                    Button("Split") { }
+                                        .buttonStyle(ActionButton(backgroundColor: .green))
+                                    Spacer(minLength: 16)
+                                    Button("Ignore") { }
+                                        .buttonStyle(ActionButton(backgroundColor: .red))
                                 }
                             }
                             .padding(20)

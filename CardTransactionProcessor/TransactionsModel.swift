@@ -10,9 +10,10 @@ import SwiftUI
 struct Transaction: Codable, Identifiable, Hashable {
     let id = UUID()
     let merchant: String
+    let datetimeReadable: String
     let amount: Float
     
     enum CodingKeys: String, CodingKey {
-        case merchant, amount
+        case merchant, datetimeReadable, amount
     }
 }
