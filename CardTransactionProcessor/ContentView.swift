@@ -101,6 +101,11 @@ struct ContentView: View {
                 self.transactions = transactions
             }
         }
+        .refreshable {
+            TransactionsAPI().getTransactions { (transactions) in
+                self.transactions = transactions
+            }
+        }
     }
 }
 
