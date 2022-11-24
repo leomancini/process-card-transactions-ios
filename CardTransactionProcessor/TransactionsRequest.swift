@@ -16,9 +16,9 @@ class TransactionsAPI {
             return
         }
         
-        guard let url = URL(string: "http://localhost/process-card-transactions/admin/viewTransactions?password=" + password) else { return }
+        guard let url = URL(string: "http://localhost/process-card-transactions-api/admin/viewTransactions?password=" + password) else { return }
         
-//        guard let url = URL(string: "https://labs.noshado.ws/process-card-transactions/admin/viewTransactions?password=" + password) else { return }
+//        guard let url = URL(string: "https://labs.noshado.ws/process-card-transactions-api/admin/viewTransactions?password=" + password) else { return }
         
         URLSession.shared.dataTask(with: url) { (data, _, _) in
             let transactions = try! JSONDecoder().decode([Transaction].self, from: data!)
